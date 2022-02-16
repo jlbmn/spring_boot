@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello Spring Boot</h1>
+    
+    <form action="/hello" method="post" class="form-example">
+	  <div class="form-example">
+	    <label for="name">Enter your name: </label>
+	    <input type="text" name="name" id="name" required>
+	  </div>
+	  <div class="form-example">
+	    <input type="submit" value="submit">
+	  </div>
+	  </form>
+  
+  <h2 th:utext="${message}">..!..message..!..</h2>
+  
+  <hr>
+  
+  <!-- if pour afficher la liste des noms seulement si elle existe -->
+  <!-- unless agit comme un SINON/ELSE -->
+  <h2 th:if="${list}">Liste des noms : </h2>
+  <h2 th:unless="${list}">Liste des Employees : </h2>
+  <ul th:if="${list}">
+	  <th:block th:each="name:${list}">
+	  	<li th:utext="${name}"></li>
+	  </th:block>
+  </ul>
+  
+  <a th:href="@{/list}">List Employee</a>
+  <!-- Mettre un if pour afficher tableau seulement si listeEmp existe -->
+  <table th:if="${listEmp}">
+  	<tr>
+  		<th>ID</th>
+  		<th>First Name</th>
+  		<th>Last Name</th>
+  	</tr>
+ 	<tr th:each="emp:${listEmp}">
+  		<td th:utext="${emp.empId}"></td>
+  		<td th:utext="${emp.firstName}"></td>
+  		<td th:utext="${emp.lastName}"></td>
+  	</tr>
+  </table>
+  
+  <hr>
+  	<h2>Liste des Customers : </h2>
+    <a th:href="@{/listCustomer}">List Customer</a>
+  <!-- Mettre un if pour afficher tableau seulement si listeEmp existe -->
+  <table th:if="${listCustomer}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  	</tr>
+ 	<tr th:each="cust:${listCustomer}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  	</tr>
+  </table>
+  
+  <hr>
+  <h2>Formulaire List Customer By State</h2>
+  <form action="listByState" method="POST">
+  	<input type="text" name="state">
+	<input type="submit" value="submit">
+  </form>
+    <table th:if="${listByState}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  	</tr>
+ 	<tr th:each="cust:${listByState}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  	</tr>
+  </table>
+  
+    <hr>
+    <h2>Liste Customer By Fed Id </h2>
+    <a th:href="@{/listByFedId}">List Customer</a>
+    <table th:if="${listByFedId}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  		<th>Fed id</th>
+  	</tr>
+ 	<tr th:each="cust:${listByFedId}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  		<td th:utext="${cust.fedId}"></td>
+  	</tr>
+  </table>
+    <hr>
+  <h2>Formulaire List Customer By Address</h2>
+  <form action="listByAddress" method="POST">
+  	<input type="text" name="address">
+	<input type="submit" value="submit">
+  </form>
+    <table th:if="${listByAddress}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  		<th>Fed id</th>
+  	</tr>
+ 	<tr th:each="cust:${listByAddress}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  		<td th:utext="${cust.fedId}"></td>
+  	</tr>
+  </table>
+      <hr>
+  <h2>Formulaire List Customer By Postal Code</h2>
+  <form action="listByPostalCode" method="POST">
+  	<input type="text" name="code">
+	<input type="submit" value="submit">
+  </form>
+    <table th:if="${listByPostalCode}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  		<th>Fed id</th>
+  		<th>Postal Code</th>
+  	</tr>
+ 	<tr th:each="cust:${listByPostalCode}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  		<td th:utext="${cust.fedId}"></td>
+  		<td th:utext="${cust.postalCode}"></td>
+  	</tr>
+  </table>
+    
+</body>
+</html>
