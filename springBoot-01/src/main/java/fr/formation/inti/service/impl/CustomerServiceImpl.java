@@ -1,9 +1,14 @@
 package fr.formation.inti.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +78,22 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Customer> findByPostalCode(String code) {
 		return customerDao.findByPostalCodeContaining(code);
+	}
+
+
+//	@Override
+//	public List<Customer> findPaginated(int pageNo, int pageSize) {
+//		Pageable paging = PageRequest.of(pageNo, pageSize);
+//        Page<Customer> pagedResult = customerDao.findAll(paging);
+//
+//        return pagedResult.toList();
+//	}
+
+
+	@Override
+	public Page<Customer> findPaginated(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return customerDao.findAll(pageable) ;
 	}
 	
 	

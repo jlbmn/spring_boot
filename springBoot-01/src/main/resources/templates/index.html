@@ -155,6 +155,31 @@
   		<td th:utext="${cust.postalCode}"></td>
   	</tr>
   </table>
+    <hr>
+    <h2>Liste Customer Pagination </h2>
+    <a th:href="@{/pagination}">List Customer</a>
+    <table th:if="${listPage}">
+  	<tr>
+  		<th>ID</th>
+  		<th>City</th>
+  		<th>Address</th>
+  		<th>State</th>
+  		<th>Fed id</th>
+  	</tr>
+ 	<tr th:each="cust:${listPage}">
+  		<td th:utext="${cust.custId}"></td>
+  		<td th:utext="${cust.city}"></td>
+  		<td th:utext="${cust.address}"></td>
+  		<td th:utext="${cust.state}"></td>
+  		<td th:utext="${cust.fedId}"></td>
+  	</tr>
+<!--   	<div th:if="${bookPage.totalPages > 0}" class="pagination" -->
+<!--     th:each="pageNumber : ${pageNumbers}"> -->
+<!--     <a th:href="@{/listBooks(size=${bookPage.size}, page=${pageNumber})}" -->
+<!--         th:text=${pageNumber} -->
+<!--         th:class="${pageNumber==bookPage.number + 1} ? active"></a> -->
+<!-- </div -->
+  </table>
     
 </body>
 </html>
